@@ -1,67 +1,70 @@
 <template>
-  <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-2xl transition-transform hover:scale-105">
-    <h1 class="text-2xl font-semibold text-blue-600 text-center mb-6">Gin Rummy Score Tracker</h1>
-    <form @submit="handleSubmit" class="space-y-4" :disabled="gameOver">
-      <div>
-        <label for="player1" class="block text-gray-700 text-sm font-bold mb-2">Player 1</label>
-        <input v-model="player1" id="player1" placeholder="Your Name" required
-               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :disabled="gameOver">
-      </div>
-      <div>
-        <label for="player2" class="block text-gray-700 text-sm font-bold mb-2">Player 2</label>
-        <input v-model="player2" id="player2" placeholder="Partner's Name" required
-               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :disabled="gameOver">
-      </div>
-      <div>
-        <label for="winner" class="block text-gray-700 text-sm font-bold mb-2">Winner</label>
-        <select v-model="winner" id="winner" required
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :disabled="gameOver">
-          <option value="">Select Winner</option>
-          <option v-if="player1" :value="player1">{{ player1 }}</option>
-          <option v-if="player2" :value="player2">{{ player2 }}</option>
-        </select>
-      </div>
-      <div>
-        <label for="score" class="block text-gray-700 text-sm font-bold mb-2">Score</label>
-        <input v-model.number="score" type="number" id="score" placeholder="Enter Score" required
-               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :disabled="gameOver">
-      </div>
-      <button type="submit"
-              class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out" :disabled="gameOver">
-        Record Score
-      </button>
-    </form>
-    <div class="mt-8">
-      <h2 class="text-lg font-semibold text-gray-800 text-center mb-4">Total Scores</h2>
-      <div class="flex justify-around">
+  <div class="bg-gray-900 min-h-screen flex items-center justify-center py-10">
+    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-2xl border border-gray-700">
+      <h1 class="font-Fira_Sans_Extra_Condensed text-4xl font-bold text-white uppercase text-center mb-8">
+        Gin Rummy Score Tracker
+      </h1>
+      <form @submit="handleSubmit" class="space-y-6" :disabled="gameOver">
         <div>
-          <p class="text-gray-700 font-medium">{{ player1 }}:</p>
-          <p :class="['text-lg font-bold', player1Total >= 100 ? 'text-red-600' : 'text-green-600']">{{ player1Total }}</p>
+          <label for="player1" class="block text-gray-300 text-sm font-bold mb-2">Player 1</label>
+          <input v-model="player1" id="player1" placeholder="Your Name" required
+                 class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600 placeholder-gray-400">
         </div>
         <div>
-          <p class="text-gray-700 font-medium">{{ player2 }}:</p>
-          <p :class="['text-lg font-bold', player2Total >= 100 ? 'text-red-600' : 'text-green-600']">{{ player2Total }}</p>
+          <label for="player2" class="block text-gray-300 text-sm font-bold mb-2">Player 2</label>
+          <input v-model="player2" id="player2" placeholder="Partner's Name" required
+                 class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600 placeholder-gray-400" :disabled="gameOver">
+        </div>
+        <div>
+          <label for="winner" class="block text-gray-300 text-sm font-bold mb-2">Winner</label>
+          <select v-model="winner" id="winner" required
+                  class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600" :disabled="gameOver">
+            <option value="" class="bg-gray-700 text-gray-400">Select Winner</option>
+            <option v-if="player1" :value="player1" class="bg-gray-700 text-white">{{ player1 }}</option>
+            <option v-if="player2" :value="player2" class="bg-gray-700 text-white">{{ player2 }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="score" class="block text-gray-300 text-sm font-bold mb-2">Score</label>
+          <input v-model.number="score" type="number" id="score" placeholder="Enter Score" required
+                 class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600 placeholder-gray-400" :disabled="gameOver">
+        </div>
+        <button type="submit"
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out"
+                :disabled="gameOver">
+          Record Score
+        </button>
+      </form>
+      <div class="mt-10">
+        <h2 class="text-2xl font-semibold text-gray-200 text-center mb-6">Total Scores</h2>
+        <div class="flex justify-around">
+          <div>
+            <p class="text-gray-400 font-medium">{{ player1 }}:</p>
+            <p :class="['text-xl font-bold', player1Total >= 100 ? 'text-red-400' : 'text-green-400']">{{ player1Total }}</p>
+          </div>
+          <div>
+            <p class="text-gray-400 font-medium">{{ player2 }}:</p>
+            <p :class="['text-xl font-bold', player2Total >= 100 ? 'text-red-400' : 'text-green-400']">{{ player2Total }}</p>
+          </div>
         </div>
       </div>
+      <div v-if="gameOver" class="mt-8 text-center text-2xl font-bold text-indigo-300">
+        Game Over! Winner: {{ winningPlayer }}
+        <button @click="startNewGame"
+                class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline">
+          Start New Game
+        </button>
+      </div>
+      <div :class="['mt-8 text-center font-medium', messageType === 'success' ? 'text-green-400' : 'text-red-400']">
+        {{ message }}
+      </div>
+      <GameHistory :completedGames="completedGames" />
     </div>
-    <div v-if="gameOver" class="mt-6 text-center text-xl font-bold text-indigo-700">
-      Game Over! Winner: {{ winningPlayer }}
-      <button @click="startNewGame" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        Start New Game
-      </button>
-    </div>
-    <div :class="['mt-6 text-center font-medium', messageType === 'success' ? 'text-green-600' : 'text-red-600']">
-      {{ message }}
-    </div>
-
-    <GameHistory
-      v-if="completedGames.length > 0"
-      :completedGames="completedGames" />
   </div>
 </template>
 
 <script>
-import { ref, watch, } from 'vue';
+import { ref, watch } from 'vue';
 import GameHistory from './components/GameHistory.vue';
 
 export default {
@@ -79,8 +82,8 @@ export default {
     const gameOver = ref(false);
     const winningPlayer = ref('');
     const gameNumber = ref(0);
-    const scores = ref([]); // Store all rounds of a game
-    const completedGames = ref([]); // Store completed games
+    const scores = ref([]);
+    const completedGames = ref([]);
     const player1Total = ref(0);
     const player2Total = ref(0);
 
@@ -112,7 +115,7 @@ export default {
         player2Total.value += score.value;
       }
 
-      // Increment game number (for rounds, not full games)
+      // Increment game number
       gameNumber.value++;
 
       // Store the round score
@@ -157,7 +160,7 @@ export default {
         gameOver: gameOver.value,
         winningPlayer: winningPlayer.value,
         scores: scores.value,
-        completedGames: completedGames.value
+        completedGames: completedGames.value,
       });
     };
 
@@ -178,11 +181,11 @@ export default {
       gameOver.value = false;
       winningPlayer.value = '';
       gameNumber.value = 0;
-      scores.value = []; // Clear round scores, but keep completed games
+      scores.value = [];
       message.value = '';
       messageType.value = 'success';
 
-      //Re-enable form,  but keep player names
+      //Re-enable form, but keep player names
       winner.value = '';
       score.value = null;
     };
@@ -209,12 +212,9 @@ export default {
       gameNumber,
       scores,
       completedGames,
-      startNewGame
+      startNewGame,
     };
   },
 };
 </script>
 
-<style scoped>
-/* You can add scoped styles here if needed */
-</style>
