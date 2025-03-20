@@ -1,10 +1,13 @@
 {
   "name": "gin-rummy",
   "version": "0.0.0",
+  "engines": {
+    "node": "22.x"
+  },
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
